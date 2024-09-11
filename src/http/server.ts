@@ -1,22 +1,36 @@
 import fastify from 'fastify'
+import {
+  serializerCompiler,
+  validatorCompiler,
+  type ZodTypeProvider,
+} from 'fastify-type-provider-zod'
 import { creatGoal } from '../functions/create-goal'
 import z from 'zod'
 
-const app = fastify()
+const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-app.post('/goals', async request => {
-  const creatGoalSchema = z.object({
-    title: z.string(),
-    desiredWeeklyFrequency: z.number().int().min(1).max(7),
-  })
+app.setValidatorCompiler(validatorCompiler)
+app.setSerializerCompiler(serializerCompiler)
 
-  const body = creatGoalSchema.parse(request.body)
+app.post(
+  '/goals',
+  {
+    schema: {
+      body: z.object({
+        title: z.string(),
+        desiredWeeklyFrequency: z.number().int().min(1).max(7),
+      }),
+    },
+  },
+  async request => {
+    const { title, desiredWeeklyFrequency } = request.body
 
-  await creatGoal({
-    title: body.title,
-    desiredWeeklyFrequency: body.desiredWeeklyFrequency,
-  })
-})
+    await creatGoal({
+      title,
+      desiredWeeklyFrequency,
+    })
+  }
+)
 
 app
   .listen({
