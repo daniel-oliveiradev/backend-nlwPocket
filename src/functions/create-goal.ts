@@ -6,7 +6,7 @@ interface CreateGoalRequest {
   desiredWeeklyFrequency: number
 }
 
-export async function creatGoal({
+export async function createGoal({
   title,
   desiredWeeklyFrequency,
 }: CreateGoalRequest) {
