@@ -1,11 +1,11 @@
 {
-  "id": "92beb6cb-a593-4eb6-b94f-42576aab92bf",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "c06fae1d-4d94-4c7b-9e72-c8af8c58e516",
+  "prevId": "8d2ca01b-42ea-4d90-adf1-6c477a8ea098",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.goal_completions": {
-      "name": "goal_completions",
+    "public.goal_complitions": {
+      "name": "goal_complitions",
       "schema": "",
       "columns": {
         "id": {
@@ -30,9 +30,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "goal_completions_goal_id_goals_id_fk": {
-          "name": "goal_completions_goal_id_goals_id_fk",
-          "tableFrom": "goal_completions",
+        "goal_complitions_goal_id_goals_id_fk": {
+          "name": "goal_complitions_goal_id_goals_id_fk",
+          "tableFrom": "goal_complitions",
           "tableTo": "goals",
           "columnsFrom": [
             "goal_id"
